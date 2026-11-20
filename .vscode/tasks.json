@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Configure",
+      "type": "shell",
+      "command": "cmake -B build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "cmake --build build",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Debug build",
+      "type": "shell",
+      "command": "cmake -B build-debug -DCMAKE_BUILD_TYPE=Debug && cmake --build build-debug && echo \"WEBCAM_SOURCE=tcp://$(ip route show default | awk '{print $3}'):5000\" > .vscode/stream.env",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Start camera stream (Windows)",
+      "type": "shell",
+      "command": "'/mnt/c/Users/Owner/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-9.0.2-full_build/bin/ffmpeg.exe' -hide_banner -loglevel error -rtbufsize 100M -f dshow -video_size 1280x720 -framerate 30 -i 'video=Display AI Camera' -vcodec libx264 -preset ultrafast -tune zerolatency -f mpegts 'tcp://0.0.0.0:5000?listen'",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "panel": "dedicated", "reveal": "always" }
+    },
+    {
+      "label": "Run webcam",
+      "type": "shell",
+      "command": "./build/webcam tcp://$(ip route show default | awk '{print $3}'):5000",
+      "dependsOn": "Build",
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": [],
+      "presentation": { "panel": "dedicated", "reveal": "always" }
+    }
+  ]
+}
