@@ -1,10 +1,28 @@
 # CUDA Computer Vision and Frequency Domain Explorer
 
+<p align="center">
+  <img src="images/IDCT_highComp.png" width="1000">
+</p>
+
 Real-time computer vision, frequency-domain analysis, and image reconstruction using NVIDIA CUDA, OpenCV, and modern C++.
 
 This project captures live video, performs GPU-accelerated image processing, computes a real-time Discrete Cosine Transform (DCT), visualises the resulting frequency spectrum, and reconstructs the image using only selected low-frequency coefficients.
 
 The project was created as part of a broader AI and computer vision learning journey with a focus on understanding the algorithms and GPU implementation techniques that sit underneath modern abstractions.
+
+---
+
+## Demo Video
+
+A short demonstration video showing:
+
+- Sobel edge detection
+- Laplacian edge detection
+- DCT coefficient visualisation
+- IDCT image reconstruction
+- Interactive coefficient selection
+
+📹 [Watch Demo](videos/ImageProcessing.gif)
 
 ---
 
@@ -33,20 +51,29 @@ Rather than calling pre-built DCT routines, the transform is implemented directl
 
 ### Frequency-Domain Image Reconstruction
 
-images/dct_reconstruction.png
-![DCT Reconstruction](images/IDCT_highComp.png)
+<p align="center">
+  <img src="images/IDCT_lowercompression.png" width="1000">
+</p>
 
-*Reconstructed image generated using only 71×71 low-frequency DCT coefficients (5041 coefficients, approximately 0.55% of the available frequency-domain information) while preserving the overall structure of the scene.*
+*Reconstructed image generated using only 71×71 low-frequency DCT coefficients (5041 coefficients, approximately 0.55% of the available DCT coefficients) while preserving the overall structure of the scene.*
+
+---
 
 ### CUDA Laplacian Edge Detection
 
-![Laplacian Processing](images/Laplass_visible.png)
+<p align="center">
+  <img src="images/Laplass_visible.png" width="1000">
+</p>
 
 *Real-time Laplacian filtering running on the GPU alongside DCT analysis and IDCT reconstruction. Edge operators can be switched dynamically while video processing continues at interactive frame rates.*
 
+---
+
 ### High-Fidelity Reconstruction
 
-![High Fidelity Reconstruction](./images/IDCT_lowercompression.png)
+<p align="center">
+  <img src="images/IDCT_highComp.png" width="1000">
+</p>
 
 *Increasing the retained coefficient count progressively restores fine image detail while maintaining real-time performance.*
 
@@ -75,7 +102,7 @@ Useful for:
 - Edge extraction
 - Shape detection
 - Feature identification
-- Computer vision pre-processing
+- Computer vision preprocessing
 
 #### Laplacian Filter
 
@@ -161,8 +188,6 @@ A status bar displays:
 
 ## GPU Processing Pipeline
 
-For each video frame:
-
 ```text
 BGR Camera Frame
         │
@@ -242,6 +267,27 @@ Developed using:
 
 ---
 
+## Repository Structure
+
+```text
+.
+├── README.md
+├── LICENSE
+├── .gitignore
+├── CMakeLists.txt
+├── images/
+├── videos/
+├── src/
+│   ├── webcam.cpp
+│   ├── gpu_processor.cu
+│   ├── gpu_processor.cuh
+│   ├── dct_plot.cpp
+│   └── dct_plot.hpp
+└── .vscode/
+```
+
+---
+
 ## Build
 
 ### Prerequisites
@@ -302,8 +348,6 @@ export WEBCAM_SOURCE=tcp://HOST:5000
 ## Windows to WSL Video Streaming
 
 Development and testing were performed using a Windows-hosted webcam streamed into WSL via FFmpeg.
-
-Pipeline:
 
 ```text
 Windows Webcam
