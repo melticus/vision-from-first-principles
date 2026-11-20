@@ -22,7 +22,7 @@ A short demonstration video showing:
 - IDCT image reconstruction
 - Interactive coefficient selection
 
-📹 [Watch Demo](videos/ImageProcessing.gif)
+📹 [Watch Demo](images/ImageProcessing.gif)
 
 ---
 
