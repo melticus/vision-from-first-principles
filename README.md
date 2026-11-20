@@ -45,7 +45,7 @@ images/laplacian_processing.png
 
 ### High-Fidelity Reconstruction
 
-images/high_fidelity_reconstruction.png
+![High Fidelity Reconstruction](./images/IDCT_lowercompression.png)
 
 *Increasing the retained coefficient count progressively restores fine image detail while maintaining real-time performance.*
 
