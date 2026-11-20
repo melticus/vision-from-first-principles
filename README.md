@@ -34,12 +34,13 @@ Rather than calling pre-built DCT routines, the transform is implemented directl
 ### Frequency-Domain Image Reconstruction
 
 images/dct_reconstruction.png
+![DCT Reconstruction](images/IDCT_highComp.png)
 
 *Reconstructed image generated using only 71×71 low-frequency DCT coefficients (5041 coefficients, approximately 0.55% of the available frequency-domain information) while preserving the overall structure of the scene.*
 
 ### CUDA Laplacian Edge Detection
 
-images/laplacian_processing.png
+![Laplacian Processing](images/Laplass_visible.png)
 
 *Real-time Laplacian filtering running on the GPU alongside DCT analysis and IDCT reconstruction. Edge operators can be switched dynamically while video processing continues at interactive frame rates.*
 
